@@ -171,7 +171,7 @@ export class ExportComponent implements OnInit {
         let rln = {};
         data.childRelationships.forEach(element => {
           var obj = {};
-         let nameLableMap =  this.sObjectsNameLabelMap;
+          let nameLableMap =  this.sObjectsNameLabelMap;
           if (element.relationshipName != null) {
             let viewVal = nameLableMap[element.childSObject];
             obj = {

@@ -657,7 +657,7 @@ module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".big-icon{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.big-icon i{\r\n    font-size: 100px;\r\n}\r\n\r\n.center{\r\n    text-align: center;\r\n}\r\n\r\n.confirmText{\r\n    margin-top: 10px;\r\n    font-size: 20px;\r\n}\r\n\r\n.mat-form-field {\r\n    width: 100%;\r\n}\r\n\r\n.btn-container, .card-body{\r\n    display: flex;\r\n    justify-content: space-around;\r\n    align-items: center;\r\n}\r\n\r\n.min-height-200 {    \r\n    min-height: 200px;\r\n}\r\n\r\n.bold {\r\n    font-weight: bold;\r\n}\r\n\r\n.card-body .btn-container{\r\n    width: 100%;\r\n}\r\n\r\n.card-body.min-height-200{\r\n    flex-direction: column;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9leHBvcnQtdG8tb3JnL2V4cG9ydC10by1vcmcuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCx3QkFBd0I7SUFDeEIsb0JBQW9CO0NBQ3ZCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUNEO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUNEO0lBQ0ksaUJBQWlCO0lBQ2pCLGdCQUFnQjtDQUNuQjs7QUFDRDtJQUNJLFlBQVk7Q0FDZjs7QUFDRDtJQUNJLGNBQWM7SUFDZCw4QkFBOEI7SUFDOUIsb0JBQW9CO0NBQ3ZCOztBQUNEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUNEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUNEO0lBQ0ksWUFBWTtDQUNmOztBQUNEO0lBQ0ksdUJBQXVCO0NBQzFCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9leHBvcnQtdG8tb3JnL2V4cG9ydC10by1vcmcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5iaWctaWNvbntcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5iaWctaWNvbiBpe1xyXG4gICAgZm9udC1zaXplOiAxMDBweDtcclxufVxyXG4uY2VudGVye1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5jb25maXJtVGV4dHtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuLm1hdC1mb3JtLWZpZWxkIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcbi5idG4tY29udGFpbmVyLCAuY2FyZC1ib2R5e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG4ubWluLWhlaWdodC0yMDAgeyAgICBcclxuICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xyXG59XHJcbi5ib2xkIHtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbi5jYXJkLWJvZHkgLmJ0bi1jb250YWluZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG4uY2FyZC1ib2R5Lm1pbi1oZWlnaHQtMjAwe1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufSJdfQ== */"
+module.exports = ".big-icon{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.big-icon i{\r\n    font-size: 100px;\r\n}\r\n\r\n.center{\r\n    text-align: center;\r\n}\r\n\r\n.confirmText{\r\n    margin-top: 10px;\r\n    font-size: 20px;\r\n}\r\n\r\n.mat-form-field {\r\n    width: 100%;\r\n}\r\n\r\n.btn-container, .card-body{\r\n    display: flex;\r\n    justify-content: space-around;\r\n    align-items: center;\r\n}\r\n\r\n.card-body {\r\n    flex-direction: column;\r\n}\r\n\r\n.min-height-200 {    \r\n    min-height: 200px;\r\n}\r\n\r\n.bold {\r\n    font-weight: bold;\r\n}\r\n\r\n.card-body .btn-container{\r\n    width: 100%;\r\n}\r\n\r\n.card-body.min-height-200{\r\n    flex-direction: column;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9leHBvcnQtdG8tb3JnL2V4cG9ydC10by1vcmcuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCx3QkFBd0I7SUFDeEIsb0JBQW9CO0NBQ3ZCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUNEO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUNEO0lBQ0ksaUJBQWlCO0lBQ2pCLGdCQUFnQjtDQUNuQjs7QUFDRDtJQUNJLFlBQVk7Q0FDZjs7QUFDRDtJQUNJLGNBQWM7SUFDZCw4QkFBOEI7SUFDOUIsb0JBQW9CO0NBQ3ZCOztBQUNEO0lBQ0ksdUJBQXVCO0NBQzFCOztBQUNEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUNEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUNEO0lBQ0ksWUFBWTtDQUNmOztBQUNEO0lBQ0ksdUJBQXVCO0NBQzFCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9leHBvcnQtdG8tb3JnL2V4cG9ydC10by1vcmcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5iaWctaWNvbntcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5iaWctaWNvbiBpe1xyXG4gICAgZm9udC1zaXplOiAxMDBweDtcclxufVxyXG4uY2VudGVye1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5jb25maXJtVGV4dHtcclxuICAgIG1hcmdpbi10b3A6IDEwcHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuLm1hdC1mb3JtLWZpZWxkIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcbi5idG4tY29udGFpbmVyLCAuY2FyZC1ib2R5e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG4uY2FyZC1ib2R5IHtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbn1cclxuLm1pbi1oZWlnaHQtMjAwIHsgICAgXHJcbiAgICBtaW4taGVpZ2h0OiAyMDBweDtcclxufVxyXG4uYm9sZCB7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG4uY2FyZC1ib2R5IC5idG4tY29udGFpbmVye1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuLmNhcmQtYm9keS5taW4taGVpZ2h0LTIwMHtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -668,7 +668,7 @@ module.exports = ".big-icon{\r\n    display: flex;\r\n    justify-content: cente
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header card-header-primary\">\r\n          <h4 class=\"card-title\">Export to Target Org\r\n            </h4>\r\n        </div>\r\n\r\n        <div *ngIf=\"isEnv2DataAvailable; then thenBlock else elseBlock\"></div>\r\n        <ng-template #thenBlock>\r\n          <div class=\"btn-container min-height-200\">\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"exportParentRec()\">\r\n              Export Parent Record\r\n            </button>\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"exportRelRec()\">\r\n              Export {{source.curObjName}} related record\r\n            </button> \r\n          </div>\r\n\r\n        </ng-template>\r\n        <ng-template #elseBlock>\r\n          <div *ngIf=\"!isConfirmModalOpen; else confirmModal\">\r\n            <form [formGroup]=\"form\" (ngSubmit)=\"loginToOrg()\">\r\n                <div class=\"card-body\">\r\n                  <!--<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">-->\r\n                  <div class=\"row\">\r\n                    <div class=\"col-md-4\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-12\">\r\n                              <h3>Source:</h3>\r\n                            </div>\r\n                          <div class=\"col-md-12\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"URL\" [value]=\"[this.source.srcBaseUrl]\" (change)=\"queryStringBuilder()\" disabled=\"true\">\r\n                              </mat-form-field>\r\n                              <!--\r\n                            <div class=\"form-group bmd-form-group\">\r\n                              <label class=\"\">URL</label>\r\n                              <input\r\n                                type=\"text\"\r\n                                class=\"form-control\"\r\n                                [value]=\"[this.source.srcBaseUrl]\"\r\n                                disabled=\"true\"\r\n                              />\r\n                            </div>-->\r\n                          </div>\r\n                          <div class=\"col-md-12\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Username\" [value]=\"[this.source.srcUsername]\" disabled=\"true\">\r\n                              </mat-form-field>\r\n                              <!--\r\n                            <div class=\"form-group bmd-form-group\">\r\n                              <label class=\"\">Username</label>\r\n                              <input\r\n                                type=\"text\"\r\n                                class=\"form-control\"\r\n                                [value]=\"[this.source.srcUsername]\"\r\n                                disabled=\"true\"\r\n                              />\r\n                            </div>-->\r\n                          </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"col-md-2 big-icon\">\r\n                      <span ><i class=\"material-icons\">arrow_right_alt</i></span>\r\n                    </div>\r\n                    <div class=\"col-md-6\">\r\n                      \r\n                      <div class=\"row\">\r\n                        <div class=\"col-md-12\">\r\n                            <h3>Destination:</h3>\r\n                          </div>\r\n                        <div class=\"col-md-10\">\r\n                          <mat-form-field>\r\n                              <mat-select placeholder=\"Environment\" formControlName=\"env\" >\r\n                                  <mat-option value=\"production\">Production </mat-option>\r\n                                  <mat-option value=\"sandbox\">Sandbox</mat-option>\r\n                              </mat-select>\r\n                            </mat-form-field>\r\n                            <!--\r\n                          <div class=\"form-group bmd-form-group\">\r\n                              <label class=\"\">Environment</label>\r\n                              <select class=\"form-control\" formControlName=\"env\" data-style=\"select-with-transition\" title=\"Environment\" data-size=\"7\" >                        \r\n                                  <option value=\"production\">Production </option>\r\n                                  <option value=\"sandbox\">Sandbox</option>\r\n                                </select>\r\n                          </div>-->\r\n                        </div>\r\n                        <div class=\"col-md-10\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Username\" formControlName=\"email\">\r\n                              </mat-form-field>\r\n                          <!--<div class=\"form-group bmd-form-group\">\r\n                            <label class=\"\">Username</label>\r\n                            <input\r\n                              type=\"text\"\r\n                              class=\"form-control\"\r\n                              formControlName=\"email\"\r\n                              required\r\n                            />\r\n                          </div>-->\r\n                        </div>\r\n                        <div class=\"col-md-10\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Password\" formControlName=\"password\" type=\"password\">\r\n                              </mat-form-field>\r\n                            <!--<div class=\"form-group bmd-form-group\">\r\n                              <label class=\"\">Password</label>\r\n                              <input\r\n                                type=\"text\"\r\n                                class=\"form-control\"\r\n                                formControlName=\"password\"\r\n                                required\r\n                              />\r\n                            </div>-->\r\n                          </div>\r\n                      </div>\r\n                      \r\n                      <div class=\"row\">\r\n                          <div class=\"col-md-8 center\">\r\n                              <button type=\"submit\" class=\"btn btn-primary \">Login</button>\r\n                          </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                  <!--</form>-->\r\n                </div>\r\n              </form>\r\n        </div>\r\n\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  "
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header card-header-primary\">\r\n          <h4 class=\"card-title\">Export to Target Org\r\n            </h4>\r\n        </div>\r\n\r\n        <div *ngIf=\"sStepper == 'ENV2_DATA_AVAILABLE'; then thenBlock else elseBlock\"></div>\r\n        <ng-template #thenBlock>\r\n          <div class=\"btn-container min-height-200\">\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"exportParentRec()\">\r\n              Export Parent Record\r\n            </button>\r\n            <button type=\"button\" class=\"btn btn-primary\" (click)=\"exportRelRec()\">\r\n              Export {{source.curObjName}} related record\r\n            </button> \r\n          </div>\r\n\r\n        </ng-template>\r\n        <ng-template #elseBlock>\r\n          <div *ngIf=\"!isConfirmModalOpen; else confirmModal\">\r\n            <form [formGroup]=\"form\" (ngSubmit)=\"loginToOrg()\">\r\n                <div class=\"card-body\">\r\n                  <!--<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">-->\r\n                  <div class=\"row\">\r\n                    <div class=\"col-md-4\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-12\">\r\n                              <h3>Source:</h3>\r\n                            </div>\r\n                          <div class=\"col-md-12\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"URL\" [value]=\"[this.source.srcBaseUrl]\" (change)=\"queryStringBuilder()\" disabled=\"true\">\r\n                              </mat-form-field>\r\n                          </div>\r\n                          <div class=\"col-md-12\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <input matInput placeholder=\"Username\" [value]=\"[this.source.srcUsername]\" disabled=\"true\">\r\n                              </mat-form-field>\r\n                          </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"col-md-2 big-icon\">\r\n                      <span ><i class=\"material-icons\">arrow_right_alt</i></span>\r\n                    </div>\r\n                    <div class=\"col-md-6\">\r\n                      \r\n                      <div class=\"row\">\r\n                        <div class=\"col-md-12\">\r\n                            <h3>Destination:</h3>\r\n                          </div>\r\n                        <div class=\"col-md-10\">\r\n                          <mat-form-field>\r\n                              <div *ngIf=\"!isFormDisbaled; then thisEnvBlock else thatEnvBlock\"></div>\r\n                                <ng-template #thisEnvBlock>\r\n                                    <mat-select placeholder=\"Environment\" formControlName=\"env\">\r\n                                        <mat-option value=\"production\">Production </mat-option>\r\n                                        <mat-option value=\"sandbox\">Sandbox</mat-option>\r\n                                    </mat-select>\r\n                                </ng-template>\r\n                                <ng-template #thatEnvBlock>\r\n                                    <mat-select placeholder=\"Environment\" disabled=\"true\">\r\n                                        <mat-option value=\"production\">Production </mat-option>\r\n                                        <mat-option value=\"sandbox\">Sandbox</mat-option>\r\n                                    </mat-select>\r\n                                </ng-template>\r\n                            </mat-form-field>\r\n                        </div>\r\n                        <div class=\"col-md-10\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <div *ngIf=\"!isFormDisbaled; then thisBlock else thatBlock\"></div>\r\n                                <ng-template #thisBlock>\r\n                                    <input matInput placeholder=\"Username\" formControlName=\"email\" >\r\n                                </ng-template>\r\n                                <ng-template #thatBlock>\r\n                                    <input matInput placeholder=\"Username\" [value]=\"[this.dest.email]\" disabled=\"true\">\r\n                                </ng-template>\r\n                              </mat-form-field>\r\n                        </div>\r\n                        <div class=\"col-md-10\">\r\n                            <mat-form-field class=\"example-full-width\">\r\n                                <div *ngIf=\"!isFormDisbaled; then thisPassBlock else thatPassBlock\"></div>\r\n                                <ng-template #thisPassBlock>\r\n                                    <input matInput placeholder=\"Password\" formControlName=\"password\" type=\"password\">\r\n                                </ng-template>\r\n                                <ng-template #thatPassBlock>\r\n                                    <input matInput placeholder=\"Password\" [value]=\"[this.dest.password]\" type=\"password\" disabled=\"true\">\r\n                                </ng-template>\r\n                              </mat-form-field>\r\n                        </div>\r\n                      </div>                     \r\n                      \r\n                    </div>\r\n                  </div>\r\n                  <div class=\"btn-container\">                    \r\n                    <div *ngIf=\"sStepper == 'CHANGE_TARGET_ORG'; then proceedBlock else loginBlock\"></div>\r\n                    <ng-template #proceedBlock>\r\n                      <button type=\"button\" class=\"btn btn-primary\" (click)=\"changeTargetOrg()\">Change Target Org</button>\r\n                      <button type=\"button\" class=\"btn btn-primary\" (click)=\"proceedToExport()\">Proceed</button> \r\n                    </ng-template>\r\n                    <ng-template #loginBlock>\r\n                      <button type=\"button\" class=\"btn btn-primary\" (click)=\"loginToOrg()\">Login</button>\r\n                    </ng-template>\r\n                                         \r\n                  </div>\r\n                  <!--</form>-->\r\n                </div>\r\n              </form>\r\n        </div>\r\n\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n  "
 
 /***/ }),
 
@@ -723,7 +723,14 @@ var ExportToOrgComponent = /** @class */ (function () {
             exportResults: [],
             curObjName: ""
         };
+        this.dest = {
+            env: "",
+            email: "",
+            password: ""
+        };
+        this.sStepper = "LOGIN"; //Options: LOGIN, CHANGE_TARGET_ORG, ENV2_DATA_AVAILABLE, 
         this.isEnv2DataAvailable = false;
+        this.isFormDisbaled = false;
         this.env = env;
         this.form = fb.group({
             env: [env, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -741,6 +748,17 @@ var ExportToOrgComponent = /** @class */ (function () {
         var exportResults = JSON.parse(sessionStorage.getItem("exportResults"));
         var curObjSelected = JSON.parse(sessionStorage.getItem("curObjSelected"));
         var env2 = sessionStorage.getItem("env2");
+        if (env2 != null) {
+            this.sStepper = "CHANGE_TARGET_ORG";
+            var formData = this.form.value;
+            var oEnv2 = JSON.parse(env2);
+            this.dest = {
+                email: oEnv2.userEmail,
+                password: "salt&pepper",
+                env: 'production'
+            };
+            this.isFormDisbaled = true;
+        }
         this.isEnv2DataAvailable = (env2 != null) ? true : false;
         this.source = {
             srcBaseUrl: sourceObj.baseURL,
@@ -750,8 +768,21 @@ var ExportToOrgComponent = /** @class */ (function () {
         };
         console.log("this.source init", this.source);
     };
+    ExportToOrgComponent.prototype.changeTargetOrg = function () {
+        this.sStepper = 'LOGIN';
+        this.isFormDisbaled = false;
+        this.dest = {
+            email: "",
+            password: "",
+            env: ''
+        };
+    };
+    ExportToOrgComponent.prototype.proceedToExport = function () {
+        this.sStepper = 'ENV2_DATA_AVAILABLE';
+    };
     ExportToOrgComponent.prototype.loginToOrg = function () {
         var _this = this;
+        console.log("reaches here?");
         var formData = this.form.value;
         this.dialogRef.close();
         if (formData.email !== "" && formData.password !== "") {
@@ -761,6 +792,7 @@ var ExportToOrgComponent = /** @class */ (function () {
                 var protocol = pathArray[0];
                 var host = pathArray[2];
                 result.baseURL = protocol + "//" + host;
+                result.env = formData.env;
                 sessionStorage.setItem("env2", JSON.stringify(result));
                 var source = _this.source;
                 _this.confDialog.open(ConfirmationDialog, {
@@ -1752,6 +1784,11 @@ module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InsertComponentComponent", function() { return InsertComponentComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _rest_rest_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../rest/rest.service */ "./src/app/rest/rest.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ng4_loading_spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng4-loading-spinner */ "./node_modules/ng4-loading-spinner/ng4-loading-spinner.umd.js");
+/* harmony import */ var ng4_loading_spinner__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ng4_loading_spinner__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1762,15 +1799,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var InsertComponentComponent = /** @class */ (function () {
-    function InsertComponentComponent() {
-        this.objects = [
-            { value: '', viewValue: 'Select an Object' },
-            { value: 'AcceptedEventRelation', viewValue: 'AcceptedEventRelation' },
-            { value: 'Account', viewValue: 'Account' },
-            { value: 'AccountBrand', viewValue: 'AccountBrand' },
-            { value: 'AccountBrandShare', viewValue: 'AccountBrandShare' }
-        ];
+    function InsertComponentComponent(fb, restService, dialog, spinnerService) {
+        this.fb = fb;
+        this.restService = restService;
+        this.dialog = dialog;
+        this.spinnerService = spinnerService;
+        this.resultsFields = [];
+        this.sObjectsNameLabelMap = {};
+        this.objects = [{ value: "", viewValue: "Select an Object" }];
+        /*
+          objects: Objects[] = [
+            {value: '', viewValue: 'Select an Object'},
+            {value: 'AcceptedEventRelation', viewValue: 'AcceptedEventRelation'},
+            {value: 'Account', viewValue: 'Account'},
+            {value: 'AccountBrand', viewValue: 'AccountBrand'},
+            {value: 'AccountBrandShare', viewValue: 'AccountBrandShare'}
+          ];*/
         this.fields = [
             { value: 'count()', viewValue: 'count()', fieldValue: '' },
             { value: 'AccountNumber', viewValue: 'AccountNumber', fieldValue: '' },
@@ -1785,6 +1834,14 @@ var InsertComponentComponent = /** @class */ (function () {
         this.section = 'STEP_1';
     }
     InsertComponentComponent.prototype.ngOnInit = function () {
+        debugger;
+        this.getAllObjects();
+        debugger;
+        this.setClickedRow = function (index) {
+            this.selectedRow = index;
+            this.selectedRecord = this.resultsFields[index];
+            console.log("this.resultsFields[index]", this.resultsFields[index]);
+        };
     };
     InsertComponentComponent.prototype.handleNext = function () {
         this.section = 'STEP_2';
@@ -1792,13 +1849,69 @@ var InsertComponentComponent = /** @class */ (function () {
     InsertComponentComponent.prototype.handlConfirm = function () {
         this.section = 'STEP_3';
     };
+    //get the list of all objects to show in dropdown
+    InsertComponentComponent.prototype.getAllObjects = function () {
+        var _this = this;
+        this.spinnerService.show();
+        var sObjMap = {};
+        this.restService.getAllOrgObjects().subscribe(function (data) {
+            data.sobjects.forEach(function (element) {
+                sObjMap[element.name] = element.label;
+                var object = {
+                    value: element.name,
+                    viewValue: element.name
+                };
+                _this.objects.push(object);
+            });
+            _this.sObjectsNameLabelMap = sObjMap;
+            //this.getFieldsObj();
+        }, function (error) { return console.log(error); }, function () { return _this.spinnerService.hide(); });
+        console.log('this.objects');
+        console.log(this.objects);
+    };
+    //get the list of all fields to show in dropdown
+    InsertComponentComponent.prototype.getFieldsObj = function (objectName) {
+        var _this = this;
+        this.spinnerService.show();
+        var that = this;
+        this.restService.getFieldsOfObject(objectName).subscribe(function (data) {
+            _this.fields = [];
+            _this.creatableFields = [];
+            var fields = [];
+            data.fields.forEach(function (element) {
+                if (element.createable)
+                    _this.creatableFields.push(element.name);
+                fields.push({ value: element.name, viewValue: element.label });
+            });
+            that.exportObj[_this.queryIndex].fields = fields;
+            var rln = {};
+            data.childRelationships.forEach(function (element) {
+                var obj = {};
+                var nameLableMap = _this.sObjectsNameLabelMap;
+                if (element.relationshipName != null) {
+                    var viewVal = nameLableMap[element.childSObject];
+                    obj = {
+                        value: element.relationshipName,
+                        viewValue: viewVal //element.childSObject
+                    };
+                    _this.childRlnMapping.push(obj);
+                }
+            });
+            sessionStorage.setItem("creatableFields", JSON.stringify(_this.creatableFields));
+            sessionStorage.setItem("childRlnMapping", JSON.stringify(_this.childRlnMapping));
+            console.log("aman3", JSON.parse(JSON.stringify(_this.childRlnMapping)));
+        }, function (error) { return console.log(error); }, function () { return _this.spinnerService.hide(); });
+    };
     InsertComponentComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-insert-component',
             template: __webpack_require__(/*! ./insert-component.component.html */ "./src/app/components/insert-component/insert-component.component.html"),
             styles: [__webpack_require__(/*! ./insert-component.component.css */ "./src/app/components/insert-component/insert-component.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _rest_rest_service__WEBPACK_IMPORTED_MODULE_1__["RestService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"],
+            ng4_loading_spinner__WEBPACK_IMPORTED_MODULE_3__["Ng4LoadingSpinnerService"]])
     ], InsertComponentComponent);
     return InsertComponentComponent;
 }());
@@ -3092,7 +3205,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\ashutjha\Documents\FI\data loader\DataLoadEngine-SpringBootUi\src\main\springbot-angularApp\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\rajpaul\Desktop\ProjectData\ASHUTOSH\DataLoadEngine-SpringBootUi\src\main\springbot-angularApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
