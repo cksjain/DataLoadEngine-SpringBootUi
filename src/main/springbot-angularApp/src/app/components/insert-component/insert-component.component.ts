@@ -1,12 +1,14 @@
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild ,Input, Output,EventEmitter } from "@angular/core";
 import { RestService } from "../../rest/rest.service";
-import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl, NgModel } from "@angular/forms";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import * as Papa from 'papaparse';
 
+   
 import {
   MatDialog,
   MatDialogConfig,
@@ -35,6 +37,10 @@ export class InsertComponentComponent implements OnInit {
   setClickedRow: Function;
   resultsFields = [];
   sObjectsNameLabelMap = {};
+  fileToUpload: File = null;
+  csvData : any;
+  @Input() fieldList = [];
+  @Output() fieldListChange = [];
   
   objects = [{ value: "", viewValue: "Select an Object" }];
 /*
@@ -45,7 +51,7 @@ export class InsertComponentComponent implements OnInit {
     {value: 'AccountBrand', viewValue: 'AccountBrand'},
     {value: 'AccountBrandShare', viewValue: 'AccountBrandShare'}
   ];*/
-  fields: Fields[] = [
+  /*fields: Fields[] = [
     {value: 'count()', viewValue: 'count()', fieldValue: ''},
     {value: 'AccountNumber', viewValue: 'AccountNumber', fieldValue: ''},
     {value: 'AccountSource', viewValue: 'AccountSource', fieldValue: ''},
@@ -56,7 +62,8 @@ export class InsertComponentComponent implements OnInit {
     {value: 'Cellphone', viewValue: 'Cellphone', fieldValue: ''},
     {value: 'City', viewValue: 'City', fieldValue: ''},
     
-  ];
+  ];*/
+  fields: Fields[]=[];
   section: string = 'STEP_1';
   creatableFields: any[];
   exportObj: any;
@@ -68,15 +75,14 @@ export class InsertComponentComponent implements OnInit {
     private restService: RestService,
     private dialog: MatDialog,
     private spinnerService: Ng4LoadingSpinnerService
-  ) {
+  ) { 
     
    }
 
   ngOnInit() {
 
-    debugger;
     this.getAllObjects();
-    debugger;
+
     this.setClickedRow = function(index) {
       this.selectedRow = index;
       this.selectedRecord = this.resultsFields[index];
@@ -91,6 +97,29 @@ export class InsertComponentComponent implements OnInit {
     this.section = 'STEP_3';
   }
 
+    handleFileInput(files: FileList) {
+      this.fileToUpload = files.item(0);
+      console.log('File Uploaded!');
+      console.log(this.fileToUpload );
+      Papa.parse(files.item(0), {
+        header: true,
+        skipEmptyLines: true,
+        complete: (result,file) => { 
+          console.log(result);
+          this.csvData = result.data;
+          result.meta.fields.forEach(csvColumn =>{
+
+          this.fields.push({value: csvColumn, viewValue: csvColumn, fieldValue: ''});
+          console.log('csvColumn->'+csvColumn)
+          console.log('this.fields.->'+this.fields)
+          })
+        }
+      });
+      //this.fieldList=this.csvData;
+      //this.fieldListChange.emit(this.fieldList);
+      console.log(this.csvData);
+      this.section = 'STEP_3';
+  }
   
   //get the list of all objects to show in dropdown
   getAllObjects() {
