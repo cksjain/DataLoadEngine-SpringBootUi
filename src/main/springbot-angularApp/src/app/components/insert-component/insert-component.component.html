@@ -17,7 +17,7 @@
               <div class="form-group">
                 {{testList}}
                 <label class="bmd-label-floating" for="object">Object Type</label>
-                <select class="form-control" id="object">
+                <select class="form-control" id="object" [(ngModel)]="selectedSObject">
                   <option *ngFor="let item of objects; let i = index">{{item.viewValue}}</option>
                 </select>
               </div>

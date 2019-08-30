@@ -39,8 +39,8 @@ export class InsertComponentComponent implements OnInit {
   sObjectsNameLabelMap = {};
   fileToUpload: File = null;
   csvData : any;
-  @Input() fieldList = [];
-  @Output() fieldListChange = [];
+  selectedSObject : any;
+
   
   objects = [{ value: "", viewValue: "Select an Object" }];
 /*
@@ -91,6 +91,7 @@ export class InsertComponentComponent implements OnInit {
   }
 
   handleNext(){
+    console.log(this.selectedSObject);
     this.section = 'STEP_2';       
   }
   handlConfirm(){
