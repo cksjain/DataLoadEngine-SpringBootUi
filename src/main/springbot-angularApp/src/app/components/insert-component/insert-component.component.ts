@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild ,Input, Output,EventEmitter } from "@angular/core";
+
 import { RestService } from "../../rest/rest.service";
-import { FormBuilder, FormGroup, FormArray, Validators, FormControl, NgModel } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl, NgModel ,ReactiveFormsModule,FormsModule } from "@angular/forms";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
@@ -40,6 +41,9 @@ export class InsertComponentComponent implements OnInit {
   fileToUpload: File = null;
   csvData : any;
   selectedSObject : any;
+  sobjectFields =[];
+
+  testOption = ['C1','C2']
 
   
   objects = [{ value: "", viewValue: "Select an Object" }];
@@ -66,8 +70,8 @@ export class InsertComponentComponent implements OnInit {
   fields: Fields[]=[];
   section: string = 'STEP_1';
   creatableFields: any[];
-  exportObj: any;
-  childRlnMapping: any;
+  exportObj: any={};
+  childRlnMapping: any =[];
   queryIndex: any;
 
   constructor(
@@ -92,34 +96,42 @@ export class InsertComponentComponent implements OnInit {
 
   handleNext(){
     console.log(this.selectedSObject);
+
+    Papa.parse(this.fileToUpload , {
+      header: true,
+      skipEmptyLines: true,
+      complete: (result,file) => { 
+        console.log(result);
+        this.csvData = result.data;
+        result.meta.fields.forEach(csvColumn =>{
+
+        this.fields.push({value: csvColumn, viewValue: csvColumn, fieldValue: ''});
+      //  console.log('csvColumn->'+csvColumn)
+       // console.log('this.fields.->'+this.fields)
+        })
+      }
+    });
+
+    this.getFieldsObj(this.selectedSObject);
+    console.log('#RP-> Fields -  '+ this.fields.toString());
     this.section = 'STEP_2';       
   }
-  handlConfirm(){
+  handleConfirm(){
     this.section = 'STEP_3';
+  }
+  handleBack(){
+    this.section = 'STEP_1';
   }
 
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
       console.log('File Uploaded!');
       console.log(this.fileToUpload );
-      Papa.parse(files.item(0), {
-        header: true,
-        skipEmptyLines: true,
-        complete: (result,file) => { 
-          console.log(result);
-          this.csvData = result.data;
-          result.meta.fields.forEach(csvColumn =>{
-
-          this.fields.push({value: csvColumn, viewValue: csvColumn, fieldValue: ''});
-          console.log('csvColumn->'+csvColumn)
-          console.log('this.fields.->'+this.fields)
-          })
-        }
-      });
+     
       //this.fieldList=this.csvData;
       //this.fieldListChange.emit(this.fieldList);
       console.log(this.csvData);
-      this.section = 'STEP_3';
+     // this.section = 'STEP_2';
   }
   
   //get the list of all objects to show in dropdown
@@ -158,14 +170,16 @@ export class InsertComponentComponent implements OnInit {
 
     this.restService.getFieldsOfObject(objectName).subscribe(
       data => {
-        this.fields = [];
+       // this.fields = [];
         this.creatableFields = [];
         let fields = [];
         data.fields.forEach(element => {
           if (element.createable) this.creatableFields.push(element.name);
-          fields.push({ value: element.name, viewValue: element.label });
+          fields.push({ value: element.name, viewValue: element.label, name:element.label });
+          this.sobjectFields.push({ value: element.name, viewValue: element.label, name:element.label });
         });
-        that.exportObj[this.queryIndex].fields = fields;
+
+       console.log("this.sobjectFields"+ this.sobjectFields.toString())
         
         let rln = {};
         data.childRelationships.forEach(element => {
@@ -180,6 +194,10 @@ export class InsertComponentComponent implements OnInit {
             this.childRlnMapping.push(obj);
           }          
         });
+
+        that.exportObj[objectName]={"fields":fields,"childRlnMapping": this.childRlnMapping};
+
+       // console.log(this.exportObj);
         sessionStorage.setItem(
           "creatableFields",
           JSON.stringify(this.creatableFields)

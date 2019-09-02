@@ -15,71 +15,40 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                {{testList}}
                 <label class="bmd-label-floating" for="object">Object Type</label>
                 <select class="form-control" id="object" [(ngModel)]="selectedSObject">
                   <option *ngFor="let item of objects; let i = index">{{item.viewValue}}</option>
                 </select>
               </div>
             </div>
-          </div>
-          <!-- 
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked=""> Single Radio
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-    
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked=""> From file
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                      <label class="form-check-label">
-                          <input class="form-check-input" type="file" name="exampleFile" >                          
-                        </label>
-                    </div>
-                    </div>
-                </div>
-
-
-              -->
-
-          <div class="row">
             <div class="col-md-6">
-              <button type="button" class="btn btn-primary pull-left" (click)="handleNext()">Next</button>
+                <div class="form-group">
+                    <label class="bmd-label-floating" for="file">CSV File</label>
+                    
+                </div>
+                <input class="" type="file" name = "file" id="file" (change)="handleFileInput($event.target.files)">
+                <!-- label class ="" for="file">Choose File</label><span>{{fileToUpload?.name}}</span -->
+                
             </div>
           </div>
+
+          <div class="row">
+
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary pull-right" (click)="handleNext()">Next</button>
+            </div>
+          </div>
+
+
+
+
 
           <div class="clearfix"></div>
           <!-- </form> -->
         </section>
         <!-- Step 1 Ends-->
         <!-- Step 2 Starts-->
-        <!-- Step 2 Ends-->
         <section *ngIf="section == 'STEP_2'">
-
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="file">Choose File</label>
-                <input class="" type="file" id="file" (change)="handleFileInput($event.target.files)">
-              </div>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-
-
-        </section>
-        <!-- Step 3 Starts-->
-        <section *ngIf="section == 'STEP_3'">
           <p class="card-category">
             Provide values for the Account fields below:
           </p>
@@ -95,7 +64,15 @@
               <tbody>
                 <tr *ngFor="let item of fields; let i = index">
                   <td>{{item.viewValue}}</td>
-                  <td class="width-30per"><input type="text" class="form-control" value="{{item.fieldValue}}"></td>
+                  <td class="width-30per">
+                    <ng-select [items]="sobjectFields" 
+                              bindLabel="name"
+                              autofocus
+                              class="form-control"
+                              bindValue="id"
+                             >
+                    </ng-select>
+                  </td>
                   <td><select class="form-control" id="object">
                       <option value="1">Value 1</option>
                     </select></td>
@@ -105,7 +82,10 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button type="button" class="btn btn-primary pull-left" (click)="handlConfirm()">Next</button>
+              <button type="button" class="btn btn-primary pull-left" (click)="handleBack()">Back</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary pull-right" (click)="handleConfirm()">Next</button>
             </div>
           </div>
         </section>
