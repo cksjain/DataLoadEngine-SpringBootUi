@@ -27,6 +27,7 @@ export interface Fields {
   value: string;
   viewValue: string;
   fieldValue: string;
+  sObjectField?: string;
 }
 @Component({
   selector: 'app-insert-component',
@@ -43,9 +44,6 @@ export class InsertComponentComponent implements OnInit {
   selectedSObject : any;
   sobjectFields =[];
 
-  testOption = ['C1','C2']
-
-  
   objects = [{ value: "", viewValue: "Select an Object" }];
 /*
   objects: Objects[] = [
@@ -73,6 +71,7 @@ export class InsertComponentComponent implements OnInit {
   exportObj: any={};
   childRlnMapping: any =[];
   queryIndex: any;
+  loading:Boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -83,7 +82,7 @@ export class InsertComponentComponent implements OnInit {
     
    }
 
-  ngOnInit() {
+  ngOnInit() { 
 
     this.getAllObjects();
 
@@ -113,7 +112,7 @@ export class InsertComponentComponent implements OnInit {
     });
 
     this.getFieldsObj(this.selectedSObject);
-    console.log('#RP-> Fields -  '+ this.fields.toString());
+    console.log('#RP-> Fields -  '+ this.fields.toString);
     this.section = 'STEP_2';       
   }
   handleConfirm(){
@@ -166,6 +165,7 @@ export class InsertComponentComponent implements OnInit {
   //get the list of all fields to show in dropdown
   getFieldsObj(objectName: string) {
     this.spinnerService.show();
+    this.loading=true;
     var that = this;
 
     this.restService.getFieldsOfObject(objectName).subscribe(
@@ -173,6 +173,7 @@ export class InsertComponentComponent implements OnInit {
        // this.fields = [];
         this.creatableFields = [];
         let fields = [];
+        debugger;
         data.fields.forEach(element => {
           if (element.createable) this.creatableFields.push(element.name);
           fields.push({ value: element.name, viewValue: element.label, name:element.label });
@@ -202,14 +203,14 @@ export class InsertComponentComponent implements OnInit {
           "creatableFields",
           JSON.stringify(this.creatableFields)
         );
-        sessionStorage.setItem(
+        sessionStorage.setItem( 
           "childRlnMapping",
           JSON.stringify(this.childRlnMapping)
         );
         console.log("aman3", JSON.parse(JSON.stringify(this.childRlnMapping)));
       },
       error => console.log(error),
-      () => this.spinnerService.hide()
+      () => {this.spinnerService.hide();that.loading=false;}
     );
   }
 

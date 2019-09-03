@@ -22,7 +22,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
-    "@ng-select/ng-select": "^2.20",
+    "@ng-select/ng-select": "^2.20.5",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "ng4-loading-spinner": "^1.2.3",
