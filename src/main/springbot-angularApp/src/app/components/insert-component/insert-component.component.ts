@@ -43,6 +43,9 @@ export class InsertComponentComponent implements OnInit {
   csvData : any;
   selectedSObject : any;
   sobjectFields =[];
+  sobjectFieldsObs:Observable<Fields[]>;
+  sobjectFieldsAsync$: Observable<[]>;
+  sobjectExternalIdFieldsAsync$ : Map<String,Observable<[]>>= new Map<String,Observable<[]>>();
 
   objects = [{ value: "", viewValue: "Select an Object" }];
 /*
@@ -71,8 +74,8 @@ export class InsertComponentComponent implements OnInit {
   exportObj: any={};
   childRlnMapping: any =[];
   queryIndex: any;
-  loading:Boolean = false;
-
+  sObjectFieldsMaster : any={};
+  sObjectFieldDetailsMaster : any={};
   constructor(
     private fb: FormBuilder,
     private restService: RestService,
@@ -83,8 +86,12 @@ export class InsertComponentComponent implements OnInit {
    }
 
   ngOnInit() { 
+   
 
     this.getAllObjects();
+    this.restService.getExternalIdOfObject('Account').subscribe(
+      data => {debugger;console.log('externalIds');console.log(data)}
+      );
 
     this.setClickedRow = function(index) {
       this.selectedRow = index;
@@ -110,7 +117,9 @@ export class InsertComponentComponent implements OnInit {
         })
       }
     });
-
+    
+    this.sobjectFieldsAsync$ = this.restService.getCreatableFieldsOfObject(this.selectedSObject);
+    
     this.getFieldsObj(this.selectedSObject);
     console.log('#RP-> Fields -  '+ this.fields.toString);
     this.section = 'STEP_2';       
@@ -161,23 +170,42 @@ export class InsertComponentComponent implements OnInit {
     console.log(this.objects);
   }
 
-  
-  //get the list of all fields to show in dropdown
-  getFieldsObj(objectName: string) {
+
+  checkFieldTypeReference(fieldName : any){
+    if(fieldName && this.sObjectFieldDetailsMaster[fieldName].type=='reference'){
+      // set observable referenceTo
+      this.sobjectExternalIdFieldsAsync$.set(fieldName,this.restService.getExternalIdOfObject(this.sObjectFieldDetailsMaster[fieldName].referenceTo[0]));
+      return true;
+    }
+    else {return false;}
+  }
+  getSmartLookUpFieldsObj(objectName: string) {
+
     this.spinnerService.show();
-    this.loading=true;
     var that = this;
 
     this.restService.getFieldsOfObject(objectName).subscribe(
       data => {
+        this.sObjectFieldsMaster[this.selectedSObject]=data;
+        console.log('this.sObjectFieldsMaster');
+        console.log(this.sObjectFieldsMaster);
        // this.fields = [];
         this.creatableFields = [];
         let fields = [];
         debugger;
         data.fields.forEach(element => {
-          if (element.createable) this.creatableFields.push(element.name);
-          fields.push({ value: element.name, viewValue: element.label, name:element.label });
-          this.sobjectFields.push({ value: element.name, viewValue: element.label, name:element.label });
+          this.sObjectFieldDetailsMaster[element.name]=element;
+          if (element.createable){
+            this.creatableFields.push(element.name);
+            fields.push({ value: element.name, viewValue: element.label, name:element.label });
+            this.sobjectFields.push({ value: element.name, viewValue: element.label, name:element.label });
+  
+          }
+
+        });
+
+        this.sobjectFieldsObs = Observable.create(function(obs){
+          obs.next( this.sobjectFields);
         });
 
        console.log("this.sobjectFields"+ this.sobjectFields.toString())
@@ -210,7 +238,69 @@ export class InsertComponentComponent implements OnInit {
         console.log("aman3", JSON.parse(JSON.stringify(this.childRlnMapping)));
       },
       error => console.log(error),
-      () => {this.spinnerService.hide();that.loading=false;}
+      () => {this.spinnerService.hide();}
+    );
+  }
+
+
+  //get the list of all fields to show in dropdown
+  getFieldsObj(objectName: string) {
+    this.spinnerService.show();
+    var that = this;
+
+    this.restService.getFieldsOfObject(objectName).subscribe(
+      data => {
+        this.sObjectFieldsMaster[this.selectedSObject]=data;
+       // this.fields = [];
+        this.creatableFields = [];
+        let fields = [];
+        debugger;
+        data.fields.forEach(element => {
+          this.sObjectFieldDetailsMaster[element.name]=element;
+          if (element.createable){
+            this.creatableFields.push(element.name);
+            fields.push({ value: element.name, viewValue: element.label, name:element.label });
+            this.sobjectFields.push({ value: element.name, viewValue: element.label, name:element.label });
+  
+          }
+
+        });
+
+        this.sobjectFieldsObs = Observable.create(function(obs){
+          obs.next( this.sobjectFields);
+        });
+
+       console.log("this.sobjectFields"+ this.sobjectFields.toString())
+        
+        let rln = {};
+        data.childRelationships.forEach(element => {
+          var obj = {};
+          let nameLableMap =  this.sObjectsNameLabelMap;
+          if (element.relationshipName != null) {
+            let viewVal = nameLableMap[element.childSObject];
+            obj = {
+              value: element.relationshipName,
+              viewValue: viewVal//element.childSObject
+            }
+            this.childRlnMapping.push(obj);
+          }          
+        });
+
+        that.exportObj[objectName]={"fields":fields,"childRlnMapping": this.childRlnMapping};
+
+       // console.log(this.exportObj);
+        sessionStorage.setItem(
+          "creatableFields",
+          JSON.stringify(this.creatableFields)
+        );
+        sessionStorage.setItem( 
+          "childRlnMapping",
+          JSON.stringify(this.childRlnMapping)
+        );
+        console.log("aman3", JSON.parse(JSON.stringify(this.childRlnMapping)));
+      },
+      error => console.log(error),
+      () => {this.spinnerService.hide();}
     );
   }
 

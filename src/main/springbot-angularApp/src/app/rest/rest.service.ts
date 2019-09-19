@@ -104,6 +104,53 @@ getFieldsOfObject (objectName: any): Observable<any> {
   return this.http.post(endpoint + getFields_endpoint,'' ,headerOptions);
 }
 
+
+getExternalIdOfObject (objectName: any): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+				  
+				  console.log(sessionData.baseURL);
+	  var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+					  'baseURL' : sessionData.baseURL,
+					  'version' : '44.0', //sessionData.version+'.0',
+					  'sessionId' : sessionData.sessionId,
+					  "Access-Control-Allow-Credentials" : "true",
+					  "Access-Control-Allow-Origin" : '*'
+				  }),
+				  params: {'objectName': objectName}
+	  };
+  
+	  
+	return this.http
+					.post<any>(endpoint + getFields_endpoint,'' ,headerOptions)
+					.pipe(map(rsp => rsp.fields.filter(field =>{ return field.externalId; })));
+  }
+
+
+  getCreatableFieldsOfObject (objectName: any): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+				  
+				  console.log(sessionData.baseURL);
+	  var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+					  'baseURL' : sessionData.baseURL,
+					  'version' : '44.0', //sessionData.version+'.0',
+					  'sessionId' : sessionData.sessionId,
+					  "Access-Control-Allow-Credentials" : "true",
+					  "Access-Control-Allow-Origin" : '*'
+				  }),
+				  params: {'objectName': objectName}
+	  };
+  
+	  
+	return this.http
+					.post<any>(endpoint + getFields_endpoint,'' ,headerOptions)
+					.pipe(map(rsp => rsp.fields.filter(field =>{ return field.createable; })));
+  }
+
+
 // upload or org to org objects.
 orgtoOrgTransfer (nameOfObject: any, data: any): Observable<any> {
   var sessionData = JSON.parse(sessionStorage.getItem('env2'));

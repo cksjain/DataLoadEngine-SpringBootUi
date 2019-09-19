@@ -48,9 +48,9 @@
         </section>
         <!-- Step 1 Ends-->
         <!-- Step 2 Starts-->
-        <section *ngIf="section == 'STEP_2' && !loading">
+        <section *ngIf="section == 'STEP_2'">
           <p class="card-category">
-            Provide values for the Account fields below:
+            Provide values for the {{selectedSObject}} fields below:
           </p>
           <div class="table-responsive">
             <table class="table">
@@ -65,18 +65,26 @@
                 <tr *ngFor="let item of fields; let i = index">
                   <td>{{item.viewValue}}</td>
                   <td class="width-30per">
-                    <ng-select  [items]="sobjectFields" 
-                                bindLabel="value"
+                    <ng-select style="background-color: azure;"  [items]="sobjectFieldsAsync$ | async" 
+                                bindLabel="name"
                                 [(ngModel)]="item.sObjectField"
-                                bindValue="value"
-                                [loading]="loading"
-                             
+                                bindValue="name"
+                                (change)="checkFieldTypeReference(item.sObjectField)"
                              >
                     </ng-select>
+                    
                   </td>
-                  <td><select class="form-control" id="object">
-                      <option value="1">Value 1</option>
-                    </select></td>
+                  <td  *ngIf="item.sObjectField && sObjectFieldDetailsMaster[item.sObjectField] && sObjectFieldDetailsMaster[item.sObjectField].type=='reference'">
+         
+                      <ng-select *ngIf="sobjectExternalIdFieldsAsync$.get(item.sObjectField)" style="background-color: azure;"  
+                      [items]="sobjectExternalIdFieldsAsync$.get(item.sObjectField) | async" 
+                      bindLabel="name"
+                      [(ngModel)]="item.sObjectExternalIdFieldMap"
+                      bindValue="name"
+                   >
+                    </ng-select>
+          
+                  </td>
                 </tr>
               </tbody>
             </table>
