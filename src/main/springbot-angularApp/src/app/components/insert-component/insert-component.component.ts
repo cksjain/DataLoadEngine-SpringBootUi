@@ -102,7 +102,7 @@ export class InsertComponentComponent implements OnInit {
 
   handleNext(){
     console.log(this.selectedSObject);
-
+    this.fields=[];
     Papa.parse(this.fileToUpload , {
       header: true,
       skipEmptyLines: true,
@@ -255,6 +255,7 @@ export class InsertComponentComponent implements OnInit {
         this.creatableFields = [];
         let fields = [];
         debugger;
+        this.sobjectFields=[];
         data.fields.forEach(element => {
           this.sObjectFieldDetailsMaster[element.name]=element;
           if (element.createable){
