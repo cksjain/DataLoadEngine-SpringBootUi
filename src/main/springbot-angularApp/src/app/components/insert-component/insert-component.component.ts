@@ -28,6 +28,7 @@ export interface Fields {
   viewValue: string;
   fieldValue: string;
   sObjectField?: string;
+  sObjectExternalIdFieldMap?: string;
 }
 @Component({
   selector: 'app-insert-component',
@@ -171,7 +172,8 @@ export class InsertComponentComponent implements OnInit {
   }
 
 
-  checkFieldTypeReference(fieldName : any){
+  checkFieldTypeReference(fieldName : any,index: any){
+    this.fields[index].sObjectExternalIdFieldMap=undefined;
     if(fieldName && this.sObjectFieldDetailsMaster[fieldName].type=='reference'){
       // set observable referenceTo
       this.sobjectExternalIdFieldsAsync$.set(fieldName,this.restService.getExternalIdOfObject(this.sObjectFieldDetailsMaster[fieldName].referenceTo[0]));

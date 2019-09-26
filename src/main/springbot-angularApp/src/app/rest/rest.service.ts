@@ -124,7 +124,7 @@ getExternalIdOfObject (objectName: any): Observable<any> {
 	  
 	return this.http
 					.post<any>(endpoint + getFields_endpoint,'' ,headerOptions)
-					.pipe(map(rsp => rsp.fields.filter(field =>{ return field.externalId; })));
+					.pipe(map(rsp => rsp.fields.filter(field =>{ return field.name !='Id' && (field.externalId || field.idLookup); })));
   }
 
 
