@@ -10,6 +10,7 @@ import { Env } from './env';
 const endpoint = 'http://localhost:8080/';
 const login_endpoint = 'login_request';
 const soql_endpoint = 'soql_request';
+const upload_endpoint = 'upload_records';
 const getAllObjects_endpoint='describe_all';
 const getFields_endpoint='describe_obj';
 const orgToOrg_endpoint='upload_records';
@@ -41,6 +42,32 @@ login (user: User): Observable<any> {
     catchError(this.handleError<any>('addProduct'))
   );
 }
+
+
+
+
+
+upload_records (objectName: any,dataBody: any): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+				  
+				  console.log(sessionData.baseURL);
+	  var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+					  'baseURL' : sessionData.baseURL,
+					  'version' : '44.0',//sessionData.version+'.0',
+					  'sessionId' : sessionData.sessionId,
+					  'objectName' :  objectName,
+					  'dataBody' : dataBody,
+					  "Access-Control-Allow-Credentials" : "true",
+					  "Access-Control-Allow-Origin" : '*'
+				  })
+	};
+	
+  
+		return this.http.post(endpoint + upload_endpoint, '' ,headerOptions);
+  }
+  
 
 
 soql_query (query: any): Observable<any> {

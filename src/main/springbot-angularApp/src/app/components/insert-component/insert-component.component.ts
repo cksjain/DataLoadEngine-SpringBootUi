@@ -128,6 +128,22 @@ export class InsertComponentComponent implements OnInit {
   handleConfirm(){
     this.section = 'STEP_3';
   }
+  
+  handleInsert(){
+    debugger;
+
+    this.restService.upload_records(this.selectedSObject,this.csvData).subscribe(
+      data => {
+        debugger;
+
+        console.log(data);
+      },
+      error => console.log(error),
+      () => this.spinnerService.hide()
+    );
+  }
+
+  
   handleBack(){
     this.section = 'STEP_1';
   }

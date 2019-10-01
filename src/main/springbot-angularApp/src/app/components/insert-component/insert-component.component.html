@@ -9,7 +9,7 @@
         <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
         <!-- Step 1 Starts-->
         <section *ngIf="section == 'STEP_1' ">
-          <p class="card-category">Select an object and a CSV containing records to insert.</p>
+          <p class="card-category">Select an object and a CSV containing records to insert.  </p>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -92,7 +92,7 @@
               <button type="button" class="btn btn-primary pull-left" (click)="handleBack()">Back</button>
             </div>
             <div class="col-md-6">
-              <button type="button" class="btn btn-primary pull-right" (click)="handleConfirm()">Next</button>
+              <button type="button" class="btn btn-primary pull-right" (click)="handleInsert()">Insert</button>
             </div>
           </div>
         </section>
