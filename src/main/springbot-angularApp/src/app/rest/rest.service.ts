@@ -15,6 +15,10 @@ const getAllObjects_endpoint='describe_all';
 const getFields_endpoint='describe_obj';
 const orgToOrg_endpoint='upload_records';
 const getChildRecords_endpoint='child_records';
+const createInsertJob_endpoint='create_delete_job';
+const processInsertJob_endpoint='process_delete_job';
+const changeStatusJob_endpoint='change_status_job';
+//const processInsertJob_endpoint='upload_records';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +48,92 @@ login (user: User): Observable<any> {
 }
 
 
+createInsertJob (object: any, operation): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+				  
+	  var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+					  'baseURL' : sessionData.baseURL,
+					  'version' : '44.0', //sessionData.version+'.0',
+					  'sessionId' : sessionData.sessionId,
+					  'object' : object,
+					  'operation': operation,
+					  "Access-Control-Allow-Credentials" : "true",
+					  "Access-Control-Allow-Origin" : '*'
+				  }),
+				  params: {'object': object}
+	  };
+	return this.http.post(endpoint + createInsertJob_endpoint,'' ,headerOptions);
+  }
 
 
+  processInsertJob (payLoad, jobId): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+		var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+						'baseURL' : sessionData.baseURL,
+						'version' : '44.0', //sessionData.version+'.0',
+						'sessionId' : sessionData.sessionId,
+						'jobId' : jobId,
+						"Access-Control-Allow-Credentials" : "true",
+						"Access-Control-Allow-Origin" : '*'
+					}),
+					params: {'payload':payLoad}
+		};
+	
+		
+	return this.http.post(endpoint + processInsertJob_endpoint,'' ,headerOptions);
+	}  
+	
+changeStatusJob (jobId): Observable<any> {
+	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
+					
+					console.log(sessionData.baseURL);
+		var headerOptions = {
+		headers: new HttpHeaders({
+			'Content-Type' : 'application/json',
+						'baseURL' : sessionData.baseURL,
+						'version' : '44.0', //sessionData.version+'.0',
+						'sessionId' : sessionData.sessionId,
+						'jobId' : jobId,
+						"Access-Control-Allow-Credentials" : "true",
+						"Access-Control-Allow-Origin" : '*'
+					}),
+					//params: {}
+		};
+	
+		
+	return this.http.post(endpoint + changeStatusJob_endpoint,'' ,headerOptions);
+	}  
+
+
+	
+	convertToCSV(columnRecord: any, resultData: any): any {
+		var finalData = [];
+		columnRecord.forEach(j => {
+		  finalData.push(j);
+		});
+		resultData.forEach(i => {
+		  columnRecord.forEach(j => {
+			finalData.push(i[j]);
+		  });
+		});
+		var array =
+		  typeof finalData != "object" ? JSON.parse(finalData) : finalData;
+	
+		var str = "";
+		console.log("columnRecord" + columnRecord.length);
+		for (var i = 0; i < array.length; i++) {
+		  if ((i + 1) % columnRecord.length == 0)
+			str += '"' + array[i] + '"' + "\r\n";
+		  else str += '"' + array[i] + '"' + ",";
+		}
+		console.log(str);
+		return str;
+	  }
+	
 
 upload_records (objectName: any,dataBody: any): Observable<any> {
 	var sessionData = JSON.parse(sessionStorage.getItem('env1'));

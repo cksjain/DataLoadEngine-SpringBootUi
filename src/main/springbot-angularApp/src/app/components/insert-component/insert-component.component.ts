@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, FormArray, Validators, FormControl, NgModel ,Re
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {Observable,forkJoin} from 'rxjs';
+import {map, startWith,switchMap} from 'rxjs/operators';
 import * as Papa from 'papaparse';
 
    
@@ -42,6 +42,8 @@ export class InsertComponentComponent implements OnInit {
   sObjectsNameLabelMap = {};
   fileToUpload: File = null;
   csvData : any;
+  resultJob:any;
+  csvColumn : any;
   selectedSObject : any;
   sobjectFields =[];
   sobjectFieldsObs:Observable<Fields[]>;
@@ -49,26 +51,7 @@ export class InsertComponentComponent implements OnInit {
   sobjectExternalIdFieldsAsync$ : Map<String,Observable<[]>>= new Map<String,Observable<[]>>();
 
   objects = [{ value: "", viewValue: "Select an Object" }];
-/*
-  objects: Objects[] = [
-    {value: '', viewValue: 'Select an Object'},
-    {value: 'AcceptedEventRelation', viewValue: 'AcceptedEventRelation'},
-    {value: 'Account', viewValue: 'Account'},
-    {value: 'AccountBrand', viewValue: 'AccountBrand'},
-    {value: 'AccountBrandShare', viewValue: 'AccountBrandShare'}
-  ];*/
-  /*fields: Fields[] = [
-    {value: 'count()', viewValue: 'count()', fieldValue: ''},
-    {value: 'AccountNumber', viewValue: 'AccountNumber', fieldValue: ''},
-    {value: 'AccountSource', viewValue: 'AccountSource', fieldValue: ''},
-    {value: 'AccountType__c', viewValue: 'AccountType__c', fieldValue: ''},
-    {value: 'Account__ID', viewValue: 'ID', fieldValue: ''},
-    {value: 'Name', viewValue: 'Name', fieldValue: ''},
-    {value: 'Home Phone', viewValue: 'HomePhone', fieldValue: ''},
-    {value: 'Cellphone', viewValue: 'Cellphone', fieldValue: ''},
-    {value: 'City', viewValue: 'City', fieldValue: ''},
-    
-  ];*/
+
   fields: Fields[]=[];
   section: string = 'STEP_1';
   creatableFields: any[];
@@ -84,7 +67,7 @@ export class InsertComponentComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService
   ) { 
     
-   }
+   } 
 
   ngOnInit() { 
    
@@ -110,11 +93,11 @@ export class InsertComponentComponent implements OnInit {
       complete: (result,file) => { 
         console.log(result);
         this.csvData = result.data;
+        this.csvColumn = result.meta.fields;
+        debugger;
         result.meta.fields.forEach(csvColumn =>{
 
         this.fields.push({value: csvColumn, viewValue: csvColumn, fieldValue: ''});
-      //  console.log('csvColumn->'+csvColumn)
-       // console.log('this.fields.->'+this.fields)
         })
       }
     });
@@ -129,18 +112,43 @@ export class InsertComponentComponent implements OnInit {
     this.section = 'STEP_3';
   }
   
+  handleInsert2(){
+    debugger;
+
+    this.restService.createInsertJob(this.selectedSObject,'INSERT').pipe(switchMap(result=>{
+      console.log(result);
+      this.resultJob=result;
+      let csvProcessedData = this.restService.convertToCSV(this.csvColumn,this.csvData);
+      debugger;
+      return this.restService.processInsertJob(csvProcessedData,result.id).subscribe((result)=>{debugger;
+        this.restService.changeStatusJob(this.resultJob.id).subscribe((res)=>{debugger;console.log(res)});
+        
+        console.log(this.resultJob)});
+    })).subscribe((data)=>{
+      console.log(data);
+    },
+    error => console.log(error),
+    () => this.spinnerService.hide()
+    );
+
+
+  }
+
+  
   handleInsert(){
     debugger;
 
-    this.restService.upload_records(this.selectedSObject,this.csvData).subscribe(
-      data => {
-        debugger;
+    this.restService.createInsertJob(this.selectedSObject,'INSERT').subscribe((result=>{
+      console.log(result);
+      this.resultJob=result;
+      let csvProcessedData = this.restService.convertToCSV(this.csvColumn,this.csvData);
+      debugger;
+      return this.restService.processInsertJob(csvProcessedData,result.id).subscribe((result)=>{debugger;
+        this.restService.changeStatusJob(this.resultJob.id).subscribe((res)=>{debugger;console.log(res)});
+        
+        console.log(this.resultJob)});
+    }))
 
-        console.log(data);
-      },
-      error => console.log(error),
-      () => this.spinnerService.hide()
-    );
   }
 
   
