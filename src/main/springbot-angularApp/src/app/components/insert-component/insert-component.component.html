@@ -50,7 +50,7 @@
           <p class="card-category">
             Provide values for the {{selectedSObject}} fields below:
           </p>
-          <div class="table-responsive">
+          <div class="table-responsive" style="min-height: 15em;padding-bottom: 5em;">
             <table class="table">
               <thead class="text-primary">
                 <tr>
@@ -97,6 +97,12 @@
           </div>
         </section>
         <!-- Step 2 Ends-->
+
+        <!-- Step 3 Starts-->
+        <section *ngIf="section == 'STEP_3'">
+          {{finalStatusMessage}}
+            <div class="clearfix"></div>
+          </section>
       </div>
     </div>
   </div>

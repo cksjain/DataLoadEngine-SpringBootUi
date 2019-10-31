@@ -28,6 +28,7 @@ export class RestService {
 
 constructor(private http: HttpClient) { }
 
+public allSobjectField : any={};
 
 login (user: User): Observable<any> {
 	var headerOptions = {
@@ -109,31 +110,6 @@ changeStatusJob (jobId): Observable<any> {
 	}  
 
 
-	
-	convertToCSV(columnRecord: any, resultData: any): any {
-		var finalData = [];
-		columnRecord.forEach(j => {
-		  finalData.push(j);
-		});
-		resultData.forEach(i => {
-		  columnRecord.forEach(j => {
-			finalData.push(i[j]);
-		  });
-		});
-		var array =
-		  typeof finalData != "object" ? JSON.parse(finalData) : finalData;
-	
-		var str = "";
-		console.log("columnRecord" + columnRecord.length);
-		for (var i = 0; i < array.length; i++) {
-		  if ((i + 1) % columnRecord.length == 0)
-			str += '"' + array[i] + '"' + "\r\n";
-		  else str += '"' + array[i] + '"' + ",";
-		}
-		console.log(str);
-		return str;
-	  }
-	
 
 upload_records (objectName: any,dataBody: any): Observable<any> {
 	var sessionData = JSON.parse(sessionStorage.getItem('env1'));
@@ -259,10 +235,10 @@ getExternalIdOfObject (objectName: any): Observable<any> {
 				  params: {'objectName': objectName}
 	  };
   
-	  
+	  this.allSobjectField[objectName]={};
 	return this.http
 					.post<any>(endpoint + getFields_endpoint,'' ,headerOptions)
-					.pipe(map(rsp => rsp.fields.filter(field =>{ return field.createable; })));
+					.pipe(map(rsp => rsp.fields.filter(field =>{this.allSobjectField[objectName][field.name]=field; return field.createable; })));
   }
 
 
