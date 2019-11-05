@@ -8,9 +8,13 @@
         <!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
          <div>Data loading...</div>
         <!--</form>-->
+        
+        
       </div>
     </div>
   </div>
+
+  
   <!--<div class="col-md-4">
 <div class="card card-profile">
 <div class="card-avatar">
@@ -29,3 +33,59 @@
 </div>
 </div>-->
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Check Job Status</h4>        
+      </div>
+      <div class="card-body">
+        <!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
+          <div *ngIf="inProgressJobIds.length==0">
+            No jobs in progress at this time
+          </div>
+          <div class="row" *ngIf="inProgressJobIds.length>0">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title">In Progress Jobs</h4>        
+                    </div>
+                    <div class="card-body" *ngFor="let id of inProgressJobIds">
+                      {{id.id}}
+                    </div>
+              <!--mat-form-field>
+                <mat-select placeholder="Job ID" [(ngModel)]="selectedJobId">
+                  <mat-option *ngFor="let id of jobIds" [value]="id">
+                    {{id}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field-->
+                </div>
+            </div>
+          </div>
+      </div>
+            <!--div class="col-md-3">
+              <input type="button" class="btn btn-primary pull-left" value="Check Job Status" (click)="getJobStatus()">
+            </div>
+          </div>   
+          <div class="row" *ngIf="jobStatusFlag">
+              <div class="col-md-3">
+                  Operation: {{operation}}
+                </div>
+            <div class="col-md-3">
+              Job State: {{jobState}}
+            </div>
+            <div class="col-md-3">
+              Number of Records Processed: {{recordsProcessed}}
+            </div>
+            <div class="col-md-3">
+              Number of Records Failed: {{recordsFailed}}
+            </div>
+          </div-->
+        <!--</form>-->
+        
+        
+      </div>
+    </div>
+  </div>

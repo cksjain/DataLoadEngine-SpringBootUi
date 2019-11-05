@@ -1,94 +1,200 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header card-header-primary">
-        <h4 class="card-title">Delete Parameters</h4>
-        <p class="card-category"></p>
-      </div>
-      <div class="card-body">
-        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+<form [formGroup]="deleteForm">
+  <div formArrayName="queries">
+    <app-accordion [title]="['Delete Parameters']" [desc]="" *ngFor="let query of queryForms.controls; let i = index"
+      [formGroupName]="i">
+      <div class="cardBody">
+        <section>
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="bmd-label-floating" for="object">Select Object Name</label>
-                <select class="form-control" id="object" >
-                  <option *ngFor="let item of objects; let i = index">{{item.viewValue}}</option>
-                </select>
-              </div>
+            <div class="col-md-3">
+              <mat-form-field>
+                <mat-select placeholder="Object" formControlName="object"
+                  (selectionChange)="objectChangeHandler($event, i)">
+                  <mat-option *ngFor="let object of objects" [value]="object.value">
+                    {{object.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                  <label class="bmd-label-floating" for="queryEditor">Where Clause:</label>
-                  <textarea class="form-control" id="queryEditor" rows="3"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-              <div class="col-md-6">
-                <div class="row">
-                  <div class="col-md-12">
-                      <div class="form-group">
-                          <label class="bmd-label-floating" for="orderByClause">ORDER By Clause:</label>
-                          <input type="text" class="form-control" id="orderByClause">
-                      </div>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                          <div class="form-check">
-                              <label class="form-check-label" for="bulkApi">
-                                  <input type="checkbox" class="form-check-input" id="bulkApi">
-                                Bulk API
-                                <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                              </label>                              
-                          </div>                            
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label" for="hardDelete">
-                                    <input type="checkbox" class="form-check-input" id="hardDelete">
-                                    Hard Delete
-                                  <span class="form-check-sign">
-                                      <span class="check"></span>
-                                    </span>
-                                </label>                              
-                            </div>                            
-                          </div> 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group serialCode">
-                            <div class="form-check">
-                                <label class="form-check-label" for="serialCode">
-                                    <input type="checkbox" class="form-check-input" id="serialCode">
-                                    Serial Code processing  
-                                  <span class="form-check-sign">
-                                      <span class="check"></span>
-                                    </span>
-                                </label>                              
-                            </div>
-                        </div>
-                    </div>
-                  </div>                
+              <div class="col-md-12">
+                <label class="bmd-label-floating" for="queryEditor">Where Clause:</label>
+                <!-- <textarea class="form-control" id="queryEditor" rows="3"></textarea> -->
               </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary pull-left">Ok</button>
-                    <button type="reset" class="btn btn-normal pull-left">Reset</button>
+                <!--div class="col-md-3">
+                  <mat-form-field>
+                    <mat-select placeholder="Fields" formControlName="field" (selectionChange)="queryStringBuilder()"
+                      multiple>
+                      <mat-option *ngFor="let item of exportObj[i].fields" [value]="item.value">
+                        {{item.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div-->
+                <div class="col-md-3">
+                    <mat-form-field>
+                        <mat-select placeholder="Filter Result By" formControlName="filterBy" (selectionChange)="queryStringBuilder()">
+                          <mat-option *ngFor="let item of exportObj[i].fields" [value]="item.value">
+                            {{item.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field>
+                        <mat-select placeholder="Operator" formControlName="operator" (selectionChange)="queryStringBuilder()" >
+                            <mat-option value="=">Equal</mat-option>
+                            <mat-option value="!=">Not Equal</mat-option>
+                            <mat-option value="<">Less Than</mat-option>
+                            <mat-option value=">">Greater Than</mat-option>
+                            <mat-option value="AND">AND</mat-option>
+                            <mat-option value="OR">OR</mat-option>
+                            <mat-option value="IN">IN</mat-option>
+                            <mat-option value="LIKE">LIKE</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Field Value" formControlName="fieldValue" value=""  (change)="queryStringBuilder()">
+                      </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <!--button type="button" class="btn btn-primary pull-left" name="addFilterbtn" value="+" (click)="addAnotherFilterRow()">+</button-->
                 </div>
             </div>
-          
-          
+
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Enter or modify a SOQL query below:" formControlName="queryString"
+                    [value]="queryString" (change)="queryStringBuilder()"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" class="btn btn-primary pull-left" id="queryBtn" (click)="querySOQL(i)">
+                  Query
+                </button>
+              </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="countOfRows>0">
+              <div class="col-md-12">
+                <p style="color:red">{{countOfRows}} record(s) will be deleted. Select from the options below and click OK button to delete.</p>
+              </div>
+            </div>
+        </section>
+        <!--section
+          class="result-section"
+          [ngClass]="show_result == true ? 'show' : 'hide'"
+        >
+        <div class="row">
+          <div class="col-md-12">
+            <div class="res-header">
+              <br>
+              <h4 class="res-title">Results</h4>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="res-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead class="text-primary">
+                        <tr>
+                          <th><input type="checkbox" name="selectAll" (change)="checkAll()"/></th>
+                          <th *ngFor="let item of exportObj[i].columns">
+                            {{item}}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>                        
+                        <tr  *ngFor="let result of exportObj[i].exportResult; let rInd = index" (click)="setClickedRow(rInd)" [class.active]="rInd == selectedRow">
+                          <td><input type="checkbox"  name="selected" (change)="onCheckboxChange(rInd, $event)"/></td>
+                          <td *ngFor="let column of exportObj[i].columns">{{result[column]}}</td>
+                        </tr>      
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section-->
+        <section>
+            <!--div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <label class="form-check-label" for="parallelProcessing">
+                        <input type="checkbox" class="form-check-input" id="parallelProcessing">
+                        Parallel Processing
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <label class="form-check-label" for="hardDelete">
+                        <input type="checkbox" class="form-check-input" id="hardDelete">
+                        Hard Delete
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group serialCode">
+                    <div class="form-check">
+                      <label class="form-check-label" for="serialCode">
+                        <input type="checkbox" class="form-check-input" id="serialCode">
+                        Serial Code processing
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <input type="number" placeholder="Enter batch size" id="batchSize">
+                </div>
+              </div-->
+              <div class="row">
+                <div class="col-md-4">
+                  <label style="padding-right: 10px;">Batch Size:</label>
+                  <input type="number" id="batchSize" value="2000" min="2000" max="50000" style="border-radius: 0.1cm; padding-left: 5px;">
+                </div>
+              </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary pull-left" (click)="createDeleteJob()">Ok</button>
+              <button type="reset" class="btn btn-normal pull-left">Reset</button>
+              
+              <!--button type="button" class="btn btn-normal pull-left" (click)="showJobId()">Show job details</button-->
+            </div>
+          </div>
+          <div class="row" *ngIf="jobId.length>0">
+            <div class="col-md-12">
+              <br>
+              <p style="color:red">{{jobId}} processed. Please check dashboard for the job status</p>
+            </div>
+          </div>
           <div class="clearfix"></div>
-        <!-- </form> -->
+
+        </section>
+
       </div>
-    </div>
+    </app-accordion>
   </div>
-</div>
+</form>
