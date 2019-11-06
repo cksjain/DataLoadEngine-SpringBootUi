@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-WebAppInitializer<springboot-angularjs>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.javacodegeeks.examples.WebAppInitializer",
+            "projectName": "springboot-angularjs",
+            "args": ""
+        }
+    ]
+}
