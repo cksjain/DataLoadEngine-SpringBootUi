@@ -1,92 +1,109 @@
 <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title">Insert</h4>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Insert</h4>
+
+      </div>
+      <div class="card-body">
+        <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+        <!-- Step 1 Starts-->
+        <section *ngIf="section == 'STEP_1' ">
+          <p class="card-category">Select an object and a CSV containing records to insert.  </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating" for="object">Object Type</label>
+                <select class="form-control" id="object" [(ngModel)]="selectedSObject">
+                  <option *ngFor="let item of objects; let i = index">{{item.viewValue}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="bmd-label-floating" for="file">CSV File</label>
+                    
+                </div>
+                <input class="" type="file" name = "file" id="file" (change)="handleFileInput($event.target.files)">
+                <!-- label class ="" for="file">Choose File</label><span>{{fileToUpload?.name}}</span -->
+                
+            </div>
+          </div>
+
+          <div class="row">
+ 
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary pull-right" (click)="handleNext()">Next</button>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="clearfix"></div>
+          <!-- </form> -->
+        </section>
+        <!-- Step 1 Ends-->
+        <!-- Step 2 Starts-->
+        <section *ngIf="section == 'STEP_2'">
+          <p class="card-category">
+            Provide values for the {{selectedSObject}} fields below:
+          </p>
+          <div class="table-responsive" style="min-height: 15em;padding-bottom: 5em;">
+            <table class="table">
+              <thead class="text-primary">
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                  <th>Smart Lookup</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of fields; let i = index">
+                  <td>{{item.viewValue}}</td>
+                  <td class="width-30per">
+                    <ng-select style="background-color: azure;"  [items]="sobjectFieldsAsync$ | async" 
+                                bindLabel="name"
+                                [(ngModel)]="item.sObjectField"
+                                bindValue="name"
+                                (change)="checkFieldTypeReference(item.sObjectField,i)"
+                             >
+                    </ng-select>
+                    
+                  </td>
+                  <td  *ngIf="item.sObjectField && sObjectFieldDetailsMaster[item.sObjectField] && sObjectFieldDetailsMaster[item.sObjectField].type=='reference'">
+         
+                      <ng-select *ngIf="sobjectExternalIdFieldsAsync$.get(item.sObjectField)" style="background-color: azure;"  
+                      [items]="sobjectExternalIdFieldsAsync$.get(item.sObjectField) | async" 
+                      bindLabel="name"
+                      [(ngModel)]="item.sObjectExternalIdFieldMap"
+                      bindValue="name"
+                   >
+                    </ng-select>
           
-        </div>
-        <div class="card-body">
-          <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
-          <!-- Step 1 Starts-->
-          <section [ngClass]="section == 'STEP_1' ? 'show' : 'hide'"> 
-              <p class="card-category">Select an object and a CSV or ZIP file containing records to insert, or choose to insert a single record. Zipped requests must contain a CSV or XML-formatted manifest called request.txt, which may reference included binary files.</p>
-              <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="bmd-label-floating" for="object">Object Type</label>
-                      <select class="form-control" id="object" >
-                        <option *ngFor="let item of objects; let i = index">{{item.viewValue}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked=""> Single Radio
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-    
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" value="option2" checked=""> From file
-                        <span class="circle">
-                          <span class="check"></span>
-                        </span>
-                      </label>
-                      <label class="form-check-label">
-                          <input class="form-check-input" type="file" name="exampleFile" >                          
-                        </label>
-                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary pull-left" (click)="handleNext()">Next</button>                    
-                    </div>
-                </div>
-              
-                <div class="clearfix"></div>
-              <!-- </form> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary pull-left" (click)="handleBack()">Back</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary pull-right" (click)="handleInsert()">Insert</button>
+            </div>
+          </div>
+        </section>
+        <!-- Step 2 Ends-->
+
+        <!-- Step 3 Starts-->
+        <section *ngIf="section == 'STEP_3'">
+          {{finalStatusMessage}}
+            <div class="clearfix"></div>
           </section>
-           <!-- Step 1 Ends-->
-               <!-- Step 2 Starts-->
-          <section [ngClass]="section == 'STEP_2' ? 'show' : 'hide'">
-              <p class="card-category">
-                  Provide values for the Account fields below:
-              </p>  
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="text-primary">
-                    <tr>
-                      <th>Field</th>
-                      <th>Value</th>
-                      <th>Smart Lookup</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of fields; let i = index">
-                        <td>{{item.viewValue}}</td>
-                        <td class="width-30per"><input type="text" class="form-control" value="{{item.fieldValue}}"></td>
-                        <td><select class="form-control" id="object" >
-                            <option value="1">Value 1</option>
-                          </select></td>
-                    </tr>                   
-                  </tbody>
-                </table>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <button type="button" class="btn btn-primary pull-left" (click)="handlConfirm()">Next</button>                    
-                  </div>
-              </div>
-          </section>
-                <!-- Step 2 Ends-->
-        </div>
       </div>
     </div>
   </div>
+</div>

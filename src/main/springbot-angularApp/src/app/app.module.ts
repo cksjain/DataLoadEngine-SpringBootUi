@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import {DemoMaterialModule} from './material-module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +61,7 @@ import { ExportComponent, ViewRelatedRecord, ExportRelatedRecord } from './compo
     ExportRelatedRecord
   ],
   imports: [
+    NgSelectModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

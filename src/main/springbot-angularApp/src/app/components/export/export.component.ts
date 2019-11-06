@@ -171,7 +171,7 @@ export class ExportComponent implements OnInit {
         let rln = {};
         data.childRelationships.forEach(element => {
           var obj = {};
-         let nameLableMap =  this.sObjectsNameLabelMap;
+          let nameLableMap =  this.sObjectsNameLabelMap;
           if (element.relationshipName != null) {
             let viewVal = nameLableMap[element.childSObject];
             obj = {
@@ -197,6 +197,7 @@ export class ExportComponent implements OnInit {
   }
 
   objectChangeHandler(event: any, index) {
+    // debugger;
     this.queryIndex = index.toString();
     let exportForm = this.exportForm.value.queries;
     let objectName = exportForm[index].object;

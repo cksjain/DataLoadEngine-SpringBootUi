@@ -17,9 +17,10 @@
 *.launch
 .settings/
 *.sublime-workspace
+.history/
 
 # IDE - VSCode
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

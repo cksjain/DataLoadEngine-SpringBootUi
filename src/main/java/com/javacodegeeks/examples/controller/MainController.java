@@ -3,7 +3,6 @@ package com.javacodegeeks.examples.controller;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,14 +46,16 @@ public class MainController {
 	@RequestMapping(value = "/create_delete_job", method = RequestMethod.POST)
 	@ResponseBody
 	public String sfdcBulkDeleteJob(@RequestHeader String baseURL, @RequestHeader String version,
-			@RequestHeader String sessionId, @RequestHeader String object) {
-		return BulkHandler.createJob(baseURL, version, object, "DELETE", "FILE", sessionId);
+			@RequestHeader String sessionId, @RequestHeader String object, @RequestHeader String operation) {
+		return BulkHandler.createJob(baseURL, version, object, operation, "FILE", sessionId);
 	}
+
+	
 
 	@RequestMapping(value = "/process_delete_job", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> sfdcBulkDeleteOperation(@RequestHeader String baseURL, @RequestHeader String version,
-			@RequestHeader String sessionId, @RequestBody String payload, @RequestHeader String jobId) {
+			@RequestHeader String sessionId, @RequestParam String payload, @RequestHeader String jobId) {
 		System.out.println(payload);
 		return BulkHandler.uploadDataBatch(baseURL, version, sessionId, jobId, "CSV", payload);
 	}
@@ -86,5 +87,21 @@ public class MainController {
 	public String uploadRecords(@RequestHeader String baseURL, @RequestHeader String version,
 			@RequestHeader String sessionId, @RequestHeader String objectName, @RequestHeader String dataBody) {
 		return RecordsCreation.createRecords(baseURL, version, objectName, sessionId, dataBody);
+	}
+
+	@RequestMapping(value = "/change_status_job", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> sfdcBulkDeleteOperationChangeStatus(@RequestHeader String jobId, @RequestHeader String version,
+			@RequestHeader String baseURL, @RequestHeader String sessionId) {
+	 
+	 return BulkHandler.changeStatusOfJob(jobId, version, baseURL, sessionId);
+	}
+
+	@RequestMapping(value = "/get_job_status", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> sfdcBulkDeleteOperationGetJobStatus(@RequestHeader String jobId, @RequestHeader String version,
+			@RequestHeader String baseURL, @RequestHeader String sessionId) {
+	 
+	 return BulkHandler.getJobStatus(baseURL, version, sessionId, jobId);
 	}
 }
