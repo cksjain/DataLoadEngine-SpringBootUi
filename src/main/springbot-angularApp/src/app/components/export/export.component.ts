@@ -197,6 +197,7 @@ export class ExportComponent implements OnInit {
   }
 
   objectChangeHandler(event: any, index) {
+    // debugger;
     this.queryIndex = index.toString();
     let exportForm = this.exportForm.value.queries;
     let objectName = exportForm[index].object;
